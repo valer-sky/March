@@ -12,7 +12,7 @@ function updateClock(){
     let now = new Date();
     let seconds = (now.getSeconds() + now.getMilliseconds() / 1000) / 60 * 360;
     let minutes = (now.getMinutes() + now.getSeconds() / 60) / 60 * 360;
-    let hours = (now.getHours() + now.getMinutes() / 60) / 12 * 360;
+    let hours = (now.getHours(0) + now.getMinutes() / 60) / 12 * 360;
     let time = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
     // UI Update
     UI.time.textContent = time;
