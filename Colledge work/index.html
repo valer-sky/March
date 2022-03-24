@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Clock</title>
+    <link rel="stylesheet" href="style.css">
+    
+  </head>
+  
+  <body>
+    <div class="clock">
+        <svg class="clockface" width="350" height="350" viewBox="-170 -170 350 350">
+            <circle class="ring ring--seconds" cx="0" cy="0" r="155" fill="transparent" stroke="red" stroke-width="5" 
+            pathlength="60" stroke-dasharray=".1 .9" stroke-dashoffset=".05"/>
+            <circle class="ring ring--hours" cx="0" cy="0" r="155" fill="transparent" stroke="green" stroke-width="15" 
+            pathlength="12" stroke-dasharray=".1 .9" stroke-dashoffset=".05"/>
+            <circle class="ring ring--center" cx="0" cy="0" r="3" fill="transparent" stroke="black" stroke-width="10"/>
+            <line class="hand hand--minute" x1="0" y1="2" x2="0" y2="-120" stroke="black" stroke-linecap="round"stroke-width="5" />
+            <line class="hand hand--hour" x1="0" y1="2" x2="0" y2="-60" stroke="black" stroke-linecap="round" stroke-width="10"/>
+            <line class="hand hand--second" x1="0" y1="25" x2="0" y2="-160" stroke="black" stroke-linecap="round" stroke-width="2"/>
+            <text class="time" x="-60" y="-66"  font-size="35" stroke-width="15" >00:00:00 </text>
+            
+            <circle cx="77" cy="-135" r="16" fill="transparent" stroke="orange" stroke-width="2"/>
+            <text x="73" y="-125" font-size="20" class="text">1</text>
+
+        </svg>
+        <!-- <svg class="clockface" width="300" height="300" viewBox="-150 -150 300 300">
+            <circle class="ring ring--seconds" r="145" pathlength="60" />
+            <circle class="ring ring--hours" r="145" pathlength="12" />
+            <text x="50" y="-5" class="date">23</text>
+            <text x="50" y="10" class="am-pm">am</text>
+            <line class="hand hand--minute" x1="0" y1="2" x2="0" y2="-110" />
+            <line class="hand hand--hour" x1="0" y1="2" x2="0" y2="-60" />
+            <circle class="ring ring--center" r="3" />
+            <line class="hand hand--second" x1="0" y1="12" x2="0" y2="-130" />
+        </svg> -->
+    </div>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
