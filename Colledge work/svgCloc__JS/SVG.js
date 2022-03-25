@@ -14,17 +14,7 @@ Circle.setAttribute("pathlength", 60);
 Circle.setAttribute("stroke-dashoffset", .0,5);
 SVGElem.appendChild(Circle);
 
-// Create hand minute
-var minute = document.createElementNS("http://www.w3.org/2000/svg", 'line');
-minute.classList.add('hand__hand--minute');
-minute.setAttribute("x1", 0);
-minute.setAttribute("y1", 2);
-minute.setAttribute("x2", 0);
-minute.setAttribute("y2", -120);
-minute.setAttribute("stroke", "black");
-minute.setAttribute("stroke-linecap", "round");
-minute.setAttribute("stroke-width", "5");
-SVGElem.appendChild(minute);
+
 
  
 // Create centre dot 
@@ -93,6 +83,18 @@ hours.setAttribute("stroke", "black");
 hours.setAttribute("stroke-linecap", "round");
 hours.setAttribute("stroke-width", "10");
 SVGElem.appendChild(hours);
+
+// Create hand minute
+var minute = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+minute.classList.add('hand__hand--minute');
+minute.setAttribute("x1", 0);
+minute.setAttribute("y1", 2);
+minute.setAttribute("x2", 0);
+minute.setAttribute("y2", -120);
+minute.setAttribute("stroke", "black");
+minute.setAttribute("stroke-linecap", "round");
+minute.setAttribute("stroke-width", "5");
+SVGElem.appendChild(minute);
 
 // Create hand second
 var second = document.createElementNS("http://www.w3.org/2000/svg", 'line');
