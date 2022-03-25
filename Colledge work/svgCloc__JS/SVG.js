@@ -2,7 +2,6 @@
 var SVGElem = document.getElementById("SSS");
 SVGElem.classList.add('clockface');
 
-
 var Circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
 Circle.setAttribute("cx", 0);
 Circle.setAttribute("cy", 0);
@@ -27,32 +26,7 @@ minute.setAttribute("stroke-linecap", "round");
 minute.setAttribute("stroke-width", "5");
 SVGElem.appendChild(minute);
 
- // Create hand hour
-var hours = document.createElementNS("http://www.w3.org/2000/svg", 'line');
-hours.classList.add('hand__hand--hour');
-hours.setAttribute("x1", 0);
-hours.setAttribute("y1", 2);
-hours.setAttribute("x2", 0);
-hours.setAttribute("y2", -60);
-hours.setAttribute("stroke", "black");
-hours.setAttribute("stroke-linecap", "round");
-hours.setAttribute("stroke-width", "10");
-// hours.setAttribute("z-index", -1);
-SVGElem.appendChild(hours);
-
-// Create hand second
-var second = document.createElementNS("http://www.w3.org/2000/svg", 'line');
-second.classList.add('hand__hand--second');
-second.setAttribute("x1", 0);
-second.setAttribute("y1", 25);
-second.setAttribute("x2", 0);
-second.setAttribute("y2", -150);
-second.setAttribute("stroke", "black");
-second.setAttribute("stroke-linecap", "round");
-second.setAttribute("stroke-width", "2");
-// second.setAttribute("z-index", -2);
-SVGElem.appendChild(second);
-
+ 
 // Create centre dot 
 var centreDot = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
 centreDot.classList.add('ring__ring--center');
@@ -67,25 +41,21 @@ SVGElem.appendChild(centreDot);
 // Create el.clock
 var elClock = document.createElementNS("http://www.w3.org/2000/svg", 'text');
 elClock.setAttribute("x", -60);
-elClock.setAttribute("y", -66);
+elClock.setAttribute("y", -50);
 elClock.setAttribute("font-size", 35);
 elClock.setAttribute("stroke-width", 15);
-elClock.setAttribute("x", -60);
 elClock.textContent = '00:00:00';
 SVGElem.appendChild(elClock);
 
 var num = 12;
-var wrap = -19; // Размер часов для расположения картинок //19
+var wrap = -19; // Размер часов для расположения картинок 
 var radius = 131; //133
 var RadiusOfHour = "39"; //39
 var ColorOfHour = "#48b382";
 var TextLenHour = "15"; // 15
 for (var i = num; i > 0; i--){
-
     var hour = document.createElementNS("http://www.w3.org/2000/svg",'circle');
-    var text=document.createElementNS("http://www.w3.org/2000/svg",'text');
-
-
+    var text = document.createElementNS("http://www.w3.org/2000/svg",'text');
     text.appendChild(document.createTextNode(i));
 
     var f = 2 / num * i * Math.PI;
@@ -102,9 +72,8 @@ for (var i = num; i > 0; i--){
     text.setAttribute("textLength",TextLenHour);
     text.setAttribute("lengthAdjust","spacing");
     if (i>9){ //костыль на варавнивание текста :)
-
-        text.setAttribute("x",left + RadiusOfHour/2-TextLenHour/2-2);
-        text.setAttribute("y",top + RadiusOfHour/2 +TextLenHour/2 );
+        text.setAttribute("x",left + RadiusOfHour/ 2- TextLenHour/2-2);
+        text.setAttribute("y",top + RadiusOfHour/2 + TextLenHour/2);
     } else {
         text.setAttribute("x",left + RadiusOfHour/2-TextLenHour/2+1);
         text.setAttribute("y",top + RadiusOfHour/2 +TextLenHour/2 );
@@ -112,6 +81,31 @@ for (var i = num; i > 0; i--){
     SVGElem.appendChild(hour);
     SVGElem.appendChild(text);
 }
+
+// Create hand hour
+var hours = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+hours.classList.add('hand__hand--hour');
+hours.setAttribute("x1", 0);
+hours.setAttribute("y1", 2);
+hours.setAttribute("x2", 0);
+hours.setAttribute("y2", -60);
+hours.setAttribute("stroke", "black");
+hours.setAttribute("stroke-linecap", "round");
+hours.setAttribute("stroke-width", "10");
+SVGElem.appendChild(hours);
+
+// Create hand second
+var second = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+second.classList.add('hand__hand--second');
+second.setAttribute("x1", 0);
+second.setAttribute("y1", 25);
+second.setAttribute("x2", 0);
+second.setAttribute("y2", -150);
+second.setAttribute("stroke", "black");
+second.setAttribute("stroke-linecap", "round");
+second.setAttribute("stroke-width", "2");
+SVGElem.appendChild(second);
+
 // Logic
 let UI = {
     time: elClock,
