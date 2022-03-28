@@ -1,4 +1,5 @@
 "use strict";
+
 var SVGElem = document.getElementById("SSS");
 SVGElem.classList.add('clockface');
 
@@ -14,19 +15,6 @@ Circle.setAttribute("pathlength", 60);
 Circle.setAttribute("stroke-dashoffset", .0,5);
 SVGElem.appendChild(Circle);
 
-// Create hand minute
-var minute = document.createElementNS("http://www.w3.org/2000/svg", 'line');
-minute.classList.add('hand__hand--minute');
-minute.setAttribute("x1", 0);
-minute.setAttribute("y1", 2);
-minute.setAttribute("x2", 0);
-minute.setAttribute("y2", -120);
-minute.setAttribute("stroke", "black");
-minute.setAttribute("stroke-linecap", "round");
-minute.setAttribute("stroke-width", "5");
-SVGElem.appendChild(minute);
-
- 
 // Create centre dot 
 var centreDot = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
 centreDot.classList.add('ring__ring--center');
@@ -49,10 +37,10 @@ SVGElem.appendChild(elClock);
 
 var num = 12;
 var wrap = -19; // Размер часов для расположения картинок 
-var radius = 131; //133
-var RadiusOfHour = "39"; //39
+var radius = 131;
+var RadiusOfHour = "39";
 var ColorOfHour = "#48b382";
-var TextLenHour = "15"; // 15
+var TextLenHour = "15"; 
 for (var i = num; i > 0; i--){
     var hour = document.createElementNS("http://www.w3.org/2000/svg",'circle');
     var text = document.createElementNS("http://www.w3.org/2000/svg",'text');
@@ -61,8 +49,8 @@ for (var i = num; i > 0; i--){
     var f = 2 / num * i * Math.PI;
     var left = wrap + radius * Math.sin(f);
     var top = wrap - radius * Math.cos(f);
-    hour.style.top=top;
-    hour.style.left=left;
+    hour.style.top = top;
+    hour.style.left = left;
 
     hour.setAttribute( "cx", left + RadiusOfHour/2);
     hour.setAttribute( "cy", top + RadiusOfHour/2 );
@@ -71,7 +59,7 @@ for (var i = num; i > 0; i--){
     hour.setAttribute( "fill", ColorOfHour );
     text.setAttribute("textLength",TextLenHour);
     text.setAttribute("lengthAdjust","spacing");
-    if (i>9){ //костыль на варавнивание текста :)
+    if (i > 9){ //проверка на варавнивание текста :)
         text.setAttribute("x",left + RadiusOfHour/ 2- TextLenHour/2-2);
         text.setAttribute("y",top + RadiusOfHour/2 + TextLenHour/2);
     } else {
@@ -81,7 +69,6 @@ for (var i = num; i > 0; i--){
     SVGElem.appendChild(hour);
     SVGElem.appendChild(text);
 }
-
 // Create hand hour
 var hours = document.createElementNS("http://www.w3.org/2000/svg", 'line');
 hours.classList.add('hand__hand--hour');
@@ -93,6 +80,18 @@ hours.setAttribute("stroke", "black");
 hours.setAttribute("stroke-linecap", "round");
 hours.setAttribute("stroke-width", "10");
 SVGElem.appendChild(hours);
+
+// Create hand minute
+var minute = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+minute.classList.add('hand__hand--minute');
+minute.setAttribute("x1", 0);
+minute.setAttribute("y1", 2);
+minute.setAttribute("x2", 0);
+minute.setAttribute("y2", -120);
+minute.setAttribute("stroke", "black");
+minute.setAttribute("stroke-linecap", "round");
+minute.setAttribute("stroke-width", "5");
+SVGElem.appendChild(minute);
 
 // Create hand second
 var second = document.createElementNS("http://www.w3.org/2000/svg", 'line');
@@ -114,13 +113,21 @@ let UI = {
     hour: hours,
 };
 
+function getZero(num) {  // Функия на добовления нуля в электронные часы
+    if(num >= 0 && num < 10) {
+        return `0${num}`;
+    } else {
+        return num;
+    }
+}
+
 function updateClock(){
     // GETTING TIME
     let now = new Date();
     let seconds = (now.getSeconds() + now.getMilliseconds() / 1000) / 60 * 360;
     let minutes = (now.getMinutes() + now.getSeconds() / 60) / 60 * 360;
     let hours = (now.getHours(0) + now.getMinutes() / 60) / 12 * 360;
-    let time = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+    let time = `${getZero(now.getHours())}:${getZero(now.getMinutes())}:${getZero(now.getSeconds())}`;
     // UI Update
     UI.time.textContent = time;
     UI.second.style.transform = `rotate(${seconds}deg)`;
