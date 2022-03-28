@@ -4,6 +4,7 @@ function updateClock(){
 var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
 context.strokeRect(0,0,canvas.width, canvas.height);
+
 	
 //Расчет координат центра и радиуса часов
 var radiusClock = canvas.width/2 - 10;
@@ -57,10 +58,7 @@ for(var th = 1; th <= 12; th++){
 	context.closePath();	
     }
 
-// Электронный циферблат
-context.fillStyle = 'black';
-context.font = 'normal 30px Arial';
-context.fillText('00:00:00', 120, 120);
+
 
 // Точка 
 context.beginPath();
@@ -71,6 +69,14 @@ context.stroke();
 context.fill();
 context.closePath();
 
+function getZero(num) {  // Функия на добовления нуля в электронные часы
+    if(num >= 0 && num < 10) {
+        return `0${num}`;
+    } else {
+        return num;
+    }
+}
+
 //Рисуем стрелки
 var lengthSeconds = radiusNum + 10;
 var lengthMinutes = radiusNum - 15;
@@ -79,6 +85,12 @@ var d = new Date();                //Получаем экземпляр дат�
 var t_sec = 6*d.getSeconds();                           //Определяем угол для секунд
 var t_min = 6*(d.getMinutes() + (1/60)*d.getSeconds()); //Определяем угол для минут
 var t_hour = 30*(d.getHours() + (1/60)*d.getMinutes()); //Определяем угол для часов
+var time = `${getZero(d.getHours())}:${getZero(d.getMinutes())}:${getZero(d.getSeconds())}`;
+
+// Электронный циферблат
+context.fillStyle = 'black';
+context.font = 'normal 30px Arial';
+context.fillText(time, 120, 120);
 
 //Рисуем секунды
 context.beginPath();
