@@ -39,7 +39,6 @@ for(var tm = 0; tm < 60; tm++){
   context.fill();
   context.closePath();
 }
-
 //Оцифровка циферблата часов
 for(var th = 1; th <= 12; th++){
 	context.beginPath();
