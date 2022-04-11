@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MVC</title>
+</head>
+<body>
+  <script>
+    var man = {
+        posX: 50,
+        posY: 50,
+        isRun: false,
+        updateView: function() {
+            webPageView.update();
+        },
+        shift: function(x, y) {
+            var isManRun = this.isRun ? 30 : 5;
+            this.posX += isManRun *  x;
+
+            this.posY += isManRun *  y;
+            this.updateView();
+        },
+        setRun: function(runState) {
+            this.isRun = runState;
+            this.updateView();
+        },
+        
+    };
+
+    var webPageView = {
+        update: function() {
+            document.getElementById('IRun').checked = man.isRun;
+            document.getElementById('IMan').style.left = man.posX + 'px';
+            document.getElementById('IMan').style.top = man.posY + 'px';
+
+        }
+    };
+    function runChanged() {
+        man.setRun(document.getElementById('IRun').checked);
+    }
+    function shiftLeft() {
+        man.shift(-1,0);
+    }
+    function shiftRight() {
+        man.shift(1,0);
+    }
+    function shiftUp() {
+        man.shift(0,-1);
+    }
+    function shiftDown() {
+        man.shift(0,1);
+    }
+</script>
+
+  <table>
+    <tr>
+      <td></td>
+      <td><input type=button value='&uarr;' onclick='shiftUp()'></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><input type=button value='&larr;' onclick='shiftLeft()'></td>
+      <td></td>
+      <td><input type=button value='&rarr;' onclick='shiftRight()'></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type=button value='&darr;' onclick='shiftDown()'></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <br/>
+
+  Бег: <input type='checkbox' id='IRun' onchange="runChanged()">
+  <br/><br/>
+  <div style='position: relative; width: 300px; height: 300px; border: solid red 1px'>
+    <div id='IMan' style='position: absolute;
+              left: 50px; top: 50px; width: 10px; height: 10px;
+              background-color: green'></div>
+  </div>
+</body>
+</html>
